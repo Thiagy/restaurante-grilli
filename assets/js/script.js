@@ -1,5 +1,3 @@
-'use strict';
-
 //O carregamento terminará após o documento ser carregado
 const preloader = document.querySelector("[data-preaload]");
 
@@ -9,10 +7,12 @@ window.addEventListener("load", function () {
 });
 
 //Adicionar ouvinte de evento em vários elementos
-const addEventOnElements = function (elements, eventType, callback) {
+ function addEventOnElements(elements, eventType, callback) {
 
   for (let i = 0, len = elements.length; i < len; i++) {
+
     elements[i].addEventListener(eventType, callback);
+    
   }
 
 }
@@ -23,7 +23,7 @@ const navbar = document.querySelector("[data-navbar]");
 const navTogglers = document.querySelectorAll("[data-nav-toggler]");
 const overlay = document.querySelector("[data-overlay]");
 
-const toggleNavbar = function () {
+function toggleNavbar() {
   navbar.classList.toggle("active");
   overlay.classList.toggle("active");
   document.body.classList.toggle("nav-active");
@@ -37,7 +37,7 @@ const backTopBtn = document.querySelector("[data-back-top-btn]");
 let lastScrollPos = 0;
 
 // Função que oculta ou mostra o cabeçalho dependendo da direção do scroll
-const hideHeader = function () {
+function hideHeader(){
 
   const isScrollBottom = lastScrollPos < window.scrollY;
   if (isScrollBottom) {
@@ -76,13 +76,13 @@ const heroSliderNextBtn = document.querySelector("[data-next-btn]");
 let currentSlidePos = 0;
 let lastActiveSliderItem = heroSliderItems[0];
 
-const updateSliderPos = function () {
+function dateSliderPos() {
   lastActiveSliderItem.classList.remove("active");
   heroSliderItems[currentSlidePos].classList.add("active");
   lastActiveSliderItem = heroSliderItems[currentSlidePos];
 }
 
-const slideNext = function () {
+function slideNext() {
 
   if (currentSlidePos >= heroSliderItems.length - 1) {
 
@@ -94,14 +94,14 @@ const slideNext = function () {
 
   }
 
-  updateSliderPos();
+dateSliderPos();
 
 }
 
 //Função de slide manual.
 heroSliderNextBtn.addEventListener("click", slideNext);
 
-const slidePrev = function () {
+function slidePrev() {
 
   if (currentSlidePos <= 0) {
 
@@ -113,7 +113,7 @@ const slidePrev = function () {
 
   }
 
-  updateSliderPos();
+dateSliderPos();
 }
 
 heroSliderPrevBtn.addEventListener("click", slidePrev);
@@ -122,7 +122,7 @@ heroSliderPrevBtn.addEventListener("click", slidePrev);
 
 let autoSlideInterval;
 
-const autoSlide = function () {
+function autoSlide() {
   autoSlideInterval = setInterval(function () {
     slideNext();
   }, 7000);
@@ -135,8 +135,6 @@ addEventOnElements([heroSliderNextBtn, heroSliderPrevBtn], "mouseover", function
 addEventOnElements([heroSliderNextBtn, heroSliderPrevBtn], "mouseout", autoSlide);
 
 window.addEventListener("load", autoSlide);
-
-
 
 //Função de efeito paralaxe
 
